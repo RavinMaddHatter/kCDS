@@ -34,6 +34,12 @@ int an2;
 int an3;
 int an4;
 int an5;
+int an6;
+int an7;
+int an8;
+int an9;
+//bool light= 1;
+//int count;
 // variables will change:
 int buttonState = 0;         // variable for reading the pushbutton status
 
@@ -41,10 +47,15 @@ void setup() {
   for (int pin = startPin;pin<=noPins;pin++){
     pinMode(pin,OUTPUT);
   }
+  //pinMode(13,OUTPUT);
   Serial.begin(115200);
 }
 
 void loop() {
+  for (int pin=0;pin<startPin;pin++){
+    Serial.print(0,BIN);
+    Serial.print(',');
+  }
   for (int pin = startPin;pin<=noPins;pin++){
     buttonState = digitalRead(pin);
     Serial.print(buttonState,BIN);
@@ -56,17 +67,50 @@ void loop() {
   an3 = analogRead(A3);
   an4 = analogRead(A4);
   an5 = analogRead(A5);
+  an6 = analogRead(A6);
+  an7 = analogRead(A7);
+  an8 = analogRead(A8);
+  an9 = analogRead(A9);
+  Serial.print("Yaw:");
   Serial.print(an0,DEC);
   Serial.print(',');
+  Serial.print("Pitch:");
   Serial.print(an1,DEC);
   Serial.print(',');
+  Serial.print("Roll:");
   Serial.print(an2,DEC);
-  Serial.print(',');
+  Serial.print(",");
+  Serial.print("Up:");
   Serial.print(an3,DEC);
   Serial.print(',');
+  Serial.print("Forward:");
   Serial.print(an4,DEC);
   Serial.print(',');
-  Serial.println(an5,DEC);
-  delay(50);
+  Serial.print("Right:");
+  Serial.print(an5,DEC);
+  Serial.print(',');
+  Serial.print("Throttle:");
+  Serial.print(an6,DEC);
+  Serial.print(',');
+  Serial.print("WheelThrottle:");
+  Serial.print(an7,DEC);
+  Serial.print(',');
+  Serial.print("Wheel:");
+  Serial.print(an8,DEC);
+  Serial.print(',');
+  Serial.print("Extra1:");
+  Serial.print(an8,DEC);
+  Serial.print(',');
+  Serial.print("Extra2:");
+  Serial.println(an9,DEC);
+//  Serial.print(',');
+//  Serial.print(count);
+//  count++;
+//  Serial.print("\n");
+  Serial.flush();
+  Serial.send_now();
+  //digitalWrite(13,light);
+  //light=!light;
+  delay(100);
  
 }
